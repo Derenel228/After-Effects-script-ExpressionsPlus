@@ -1,0 +1,319 @@
+{
+    function ExpressionsPlus(thisObj) {
+        var scriptName = "Expressions+";
+        var presetFile = new File(Folder.userData.fsName + "/" + scriptName + "_presets.json");
+
+        // ---- Переводы ----
+        var langData = {
+            en: {
+                ui:{ title:"Expressions+", lang:"Language:", inputLabel:"Expression:",
+                     inputPh:"Enter expression...", listLabel:"Presets:",
+                     addBtn:"Add", delBtn:"Delete", propsLabel:"Apply to:",
+                     pos:"Position", rot:"Rotation", scale:"Scale", opac:"Opacity", anchor:"Anchor Point",
+                     applyBtn:"Apply", removeBtn:"Remove", github:"GitHub", youtube:"YouTube" },
+                exprs:[
+                    {name:"Shake",expr:"wiggle(3,30)",hint:"Simple shake"},
+                    {name:"Loop Out",expr:"loopOut()",hint:"Repeats the animation"},
+                    {name:"Loop Out PingPong",expr:"loopOut('pingpong')",hint:"Repeats back and forth"},
+                    {name:"Random Offset",expr:"wiggle(5,100)",hint:"Random offset"},
+                    {name:"Rotate Over Time",expr:"time*30",hint:"Rotation over time"}
+                ]
+            },
+            ru: {
+                ui:{ title:"Expressions+", lang:"Язык:", inputLabel:"Выражение:",
+                     inputPh:"Введите выражение...", listLabel:"Пресеты:",
+                     addBtn:"Добавить", delBtn:"Удалить", propsLabel:"Применить к:",
+                     pos:"Позиция", rot:"Поворот", scale:"Масштаб", opac:"Прозрачность", anchor:"Точка привязки",
+                     applyBtn:"Применить", removeBtn:"Убрать", github:"GitHub", youtube:"YouTube" },
+                exprs:[
+                    {name:"Тряска",expr:"wiggle(3,30)",hint:"Простая тряска"},
+                    {name:"Зациклить",expr:"loopOut()",hint:"Повторяет анимацию"},
+                    {name:"Пинг-понг цикл",expr:"loopOut('pingpong')",hint:"Вперёд-назад"},
+                    {name:"Случайный сдвиг",expr:"wiggle(5,100)",hint:"Случайный сдвиг"},
+                    {name:"Вращение со временем",expr:"time*30",hint:"Вращение по времени"}
+                ]
+            },
+            uk: {
+                ui:{ title:"Expressions+", lang:"Мова:", inputLabel:"Вираз:",
+                     inputPh:"Введіть вираз...", listLabel:"Пресети:",
+                     addBtn:"Додати", delBtn:"Видалити", propsLabel:"Застосувати до:",
+                     pos:"Позиція", rot:"Обертання", scale:"Масштаб", opac:"Прозорість", anchor:"Точка прив’язки",
+                     applyBtn:"Застосувати", removeBtn:"Прибрати", github:"GitHub", youtube:"YouTube" },
+                exprs:[
+                    {name:"Тремтіння",expr:"wiggle(3,30)",hint:"Просте тремтіння"},
+                    {name:"Зациклити",expr:"loopOut()",hint:"Повторює анімацію"},
+                    {name:"Пінг-понг цикл",expr:"loopOut('pingpong')",hint:"Туди-назад"},
+                    {name:"Випадковий зсув",expr:"wiggle(5,100)",hint:"Випадковий зсув"},
+                    {name:"Обертання з часом",expr:"time*30",hint:"Обертання за часом"}
+                ]
+            },
+            fr: {
+                ui:{ title:"Expressions+", lang:"Langue:", inputLabel:"Expression:",
+                     inputPh:"Entrez l’expression...", listLabel:"Préréglages:",
+                     addBtn:"Ajouter", delBtn:"Supprimer", propsLabel:"Appliquer à:",
+                     pos:"Position", rot:"Rotation", scale:"Échelle", opac:"Opacité", anchor:"Point d’ancrage",
+                     applyBtn:"Appliquer", removeBtn:"Retirer", github:"GitHub", youtube:"YouTube" },
+                exprs:[
+                    {name:"Tremblement",expr:"wiggle(3,30)",hint:"Petit tremblement"},
+                    {name:"Boucle",expr:"loopOut()",hint:"Répète l’animation"},
+                    {name:"Boucle Aller-Retour",expr:"loopOut('pingpong')",hint:"Aller-retour"},
+                    {name:"Décalage Aléatoire",expr:"wiggle(5,100)",hint:"Décalage aléatoire"},
+                    {name:"Rotation sur le Temps",expr:"time*30",hint:"Rotation sur le temps"}
+                ]
+            },
+            de: {
+                ui:{ title:"Expressions+", lang:"Sprache:", inputLabel:"Ausdruck:",
+                     inputPh:"Ausdruck eingeben...", listLabel:"Voreinstellungen:",
+                     addBtn:"Hinzufügen", delBtn:"Löschen", propsLabel:"Anwenden auf:",
+                     pos:"Position", rot:"Drehung", scale:"Skalierung", opac:"Deckkraft", anchor:"Ankerpunkt",
+                     applyBtn:"Anwenden", removeBtn:"Entfernen", github:"GitHub", youtube:"YouTube" },
+                exprs:[
+                    {name:"Wackeln",expr:"wiggle(3,30)",hint:"Einfaches Wackeln"},
+                    {name:"Schleife",expr:"loopOut()",hint:"Wiederholt die Animation"},
+                    {name:"Schleife PingPong",expr:"loopOut('pingpong')",hint:"Hin und zurück"},
+                    {name:"Zufällige Verschiebung",expr:"wiggle(5,100)",hint:"Zufällige Verschiebung"},
+                    {name:"Rotation über Zeit",expr:"time*30",hint:"Rotation über Zeit"}
+                ]
+            },
+            zh: {
+                ui:{ title:"Expressions+", lang:"语言:", inputLabel:"表达式:",
+                     inputPh:"输入表达式...", listLabel:"预设:",
+                     addBtn:"添加", delBtn:"删除", propsLabel:"应用到:",
+                     pos:"位置", rot:"旋转", scale:"缩放", opac:"不透明度", anchor:"锚点",
+                     applyBtn:"应用", removeBtn:"移除", github:"GitHub", youtube:"YouTube" },
+                exprs:[
+                    {name:"抖动",expr:"wiggle(3,30)",hint:"简单的抖动"},
+                    {name:"循环",expr:"loopOut()",hint:"重复动画"},
+                    {name:"循环乒乓",expr:"loopOut('pingpong')",hint:"来回循环"},
+                    {name:"随机偏移",expr:"wiggle(5,100)",hint:"随机偏移"},
+                    {name:"随时间旋转",expr:"time*30",hint:"随时间旋转"}
+                ]
+            },
+            ko: {
+                ui:{ title:"Expressions+", lang:"언어:", inputLabel:"표현식:",
+                     inputPh:"표현식을 입력...", listLabel:"프리셋:",
+                     addBtn:"추가", delBtn:"삭제", propsLabel:"적용 대상:",
+                     pos:"위치", rot:"회전", scale:"크기", opac:"불투명도", anchor:"기준점",
+                     applyBtn:"적용", removeBtn:"제거", github:"GitHub", youtube:"YouTube" },
+                exprs:[
+                    {name:"흔들기",expr:"wiggle(3,30)",hint:"간단한 흔들기"},
+                    {name:"루프",expr:"loopOut()",hint:"애니메이션 반복"},
+                    {name:"루프 핑퐁",expr:"loopOut('pingpong')",hint:"앞뒤 반복"},
+                    {name:"랜덤 오프셋",expr:"wiggle(5,100)",hint:"랜덤 오프셋"},
+                    {name:"시간에 따른 회전",expr:"time*30",hint:"시간에 따른 회전"}
+                ]
+            },
+            ja: {
+                ui:{ title:"Expressions+", lang:"言語:", inputLabel:"式:",
+                     inputPh:"式を入力...", listLabel:"プリセット:",
+                     addBtn:"追加", delBtn:"削除", propsLabel:"適用先:",
+                     pos:"位置", rot:"回転", scale:"スケール", opac:"不透明度", anchor:"アンカーポイント",
+                     applyBtn:"適用", removeBtn:"削除", github:"GitHub", youtube:"YouTube" },
+                exprs:[
+                    {name:"揺れ",expr:"wiggle(3,30)",hint:"簡単な揺れ"},
+                    {name:"ループ",expr:"loopOut()",hint:"アニメーションを繰り返す"},
+                    {name:"ループピンポン",expr:"loopOut('pingpong')",hint:"前後に繰り返す"},
+                    {name:"ランダムオフセット",expr:"wiggle(5,100)",hint:"ランダムオフセット"},
+                    {name:"時間で回転",expr:"time*30",hint:"時間で回転"}
+                ]
+            }
+        };
+
+        // ---- Определение языка AE ----
+        function detectAELang() {
+            var aeLang = "en";
+            try {
+                if (app.language && typeof app.language === "string") aeLang = app.language;
+                else if ($.locale && typeof $.locale === "string") aeLang = $.locale;
+            } catch(e){}
+            if (typeof aeLang !== "string") aeLang = "en";
+            aeLang = aeLang.toLowerCase();
+            if (aeLang.indexOf("ru") === 0) return "ru";
+            if (aeLang.indexOf("uk") === 0) return "uk";
+            if (aeLang.indexOf("de") === 0) return "de";
+            if (aeLang.indexOf("fr") === 0) return "fr";
+            if (aeLang.indexOf("zh") === 0 || aeLang.indexOf("cn") === 0) return "zh";
+            if (aeLang.indexOf("ko") === 0) return "ko";
+            if (aeLang.indexOf("ja") === 0) return "ja";
+            return "en";
+        }
+        var currentLang = detectAELang();
+        function langToIndex(lang) {
+            switch (lang) {
+                case "en": return 0; case "ru": return 1; case "uk": return 2;
+                case "de": return 3; case "fr": return 4;
+                case "zh": return 5; case "ko": return 6; case "ja": return 7;
+            } return 0;
+        }
+
+        // ---- Работа с файлами ----
+        function savePresetsToFile(presets) {
+            try {
+                presetFile.encoding = "UTF-8"; presetFile.open("w");
+                presetFile.write(JSON.stringify(presets)); presetFile.close();
+            } catch(e){}
+        }
+        function loadPresetsFromFile() {
+            if (presetFile.exists) {
+                try {
+                    presetFile.encoding = "UTF-8"; presetFile.open("r");
+                    var data = presetFile.read(); presetFile.close();
+                    return JSON.parse(data);
+                } catch(e){ return []; }
+            } return [];
+        }
+        var userExprs = loadPresetsFromFile();
+
+        // ---- UI ----
+        var win = (thisObj instanceof Panel)
+            ? thisObj
+            : new Window("palette", langData[currentLang].ui.title, undefined, {resizeable:true});
+
+        win.graphics.backgroundColor = win.graphics.newBrush(win.graphics.BrushType.SOLID_COLOR,[0.15,0.15,0.2,1]);
+        win.orientation = "column"; win.alignChildren = "fill"; win.spacing = 8; win.margins = 12;
+
+        function addSeparator(container){
+            var sep = container.add("panel"); sep.alignment = "fill"; sep.preferredSize.height = 2; return sep;
+        }
+
+        // --- Язык ---
+        var langGroup = win.add("group");
+        var langLabel = langGroup.add("statictext", undefined, langData[currentLang].ui.lang);
+        langLabel.preferredSize.width = 80; // не сокращает "Language"
+        var langDropdown = langGroup.add("dropdownlist", undefined,
+            ["English","Русский","Українська","Deutsch","Français","中文","한국어","日本語"]);
+        langDropdown.selection = langToIndex(currentLang);
+
+        // --- Ввод выражения ---
+        var lblInput = win.add("statictext", undefined, langData[currentLang].ui.inputLabel);
+        lblInput.graphics.font = ScriptUI.newFont("Arial","BOLD",12);
+
+        var exprGroup = win.add("group");
+        exprGroup.orientation = "stack";
+        var exprInput = exprGroup.add("edittext", undefined, "");
+        exprInput.characters=40;
+
+        // плейсхолдер (серый текст поверх)
+        var placeholder = exprGroup.add("statictext", undefined, langData[currentLang].ui.inputPh);
+        placeholder.graphics.foregroundColor = placeholder.graphics.newPen(placeholder.graphics.PenType.SOLID_COLOR,[0.6,0.6,0.6,1],1);
+        placeholder.alignment = ["fill","fill"];
+
+        exprInput.onChanging = function() {
+            placeholder.visible = (exprInput.text === "");
+        };
+        exprInput.onActivate = function() {
+            placeholder.visible = (exprInput.text === "");
+        };
+        exprInput.onDeactivate = function() {
+            placeholder.visible = (exprInput.text === "");
+        };
+
+        var history=[]; 
+        function pushHistory(value){if(value!==""&&(history.length===0||history[history.length-1]!==value))history.push(value);} 
+        function popHistory(){if(history.length>0)return history.pop();return"";} 
+        try{ exprInput.addEventListener("keydown",function(k){if(k.ctrlKey&&k.keyName==="Z"){var prev=popHistory();if(prev!=="")exprInput.text=prev;}});}catch(e){}
+
+        addSeparator(win);
+
+        var lblList=win.add("statictext",undefined,langData[currentLang].ui.listLabel);
+        lblList.graphics.font=ScriptUI.newFont("Arial","BOLD",12);
+        var listExprs=win.add("listbox",undefined,[],{multiselect:false});
+        listExprs.preferredSize=[300,150];
+        try{ listExprs.graphics.backgroundColor=listExprs.graphics.newBrush(listExprs.graphics.BrushType.SOLID_COLOR,[0.95,0.95,0.95,1]); }catch(e){}
+
+        function refreshList(){
+            listExprs.removeAll();
+            var exprs=langData[currentLang].exprs;
+            for(var i=0;i<exprs.length;i++){
+                var item=listExprs.add("item",exprs[i].name+" ("+exprs[i].expr+")");
+                item.expr=exprs[i].expr; item.helpTip=exprs[i].hint;
+            }
+            for(var j=0;j<userExprs.length;j++){
+                var item2=listExprs.add("item","★ "+userExprs[j]); item2.expr=userExprs[j];
+            }
+        }
+        refreshList();
+        listExprs.onChange=function(){if(listExprs.selection){pushHistory(exprInput.text);exprInput.text=listExprs.selection.expr;}};
+
+        addSeparator(win);
+
+        var presetBtns = win.add("group");
+        var addPresetBtn  = presetBtns.add("button", undefined, langData[currentLang].ui.addBtn);
+        var delPresetBtn  = presetBtns.add("button", undefined, langData[currentLang].ui.delBtn);
+        addPresetBtn.onClick=function(){var newExpr=exprInput.text;if(newExpr&&userExprs.indexOf(newExpr)===-1){userExprs.push(newExpr);savePresetsToFile(userExprs);refreshList();}};
+        delPresetBtn.onClick=function(){if(listExprs.selection){var txt=listExprs.selection.expr;var idx=userExprs.indexOf(txt);if(idx>-1){userExprs.splice(idx,1);savePresetsToFile(userExprs);refreshList();}}};
+
+        addSeparator(win);
+
+        var lblProps=win.add("statictext",undefined,langData[currentLang].ui.propsLabel);
+        var groupProps=win.add("group"); groupProps.orientation="row";
+        var chkPos=groupProps.add("checkbox",undefined,langData[currentLang].ui.pos);
+        var chkRot=groupProps.add("checkbox",undefined,langData[currentLang].ui.rot);
+        var chkScale=groupProps.add("checkbox",undefined,langData[currentLang].ui.scale);
+        var chkOpac=groupProps.add("checkbox",undefined,langData[currentLang].ui.opac);
+        var chkAnchor=groupProps.add("checkbox",undefined,langData[currentLang].ui.anchor);
+        chkPos.value=true;
+
+        var actionBtns=win.add("group");
+        var applyBtn=actionBtns.add("button",undefined,langData[currentLang].ui.applyBtn);
+        var removeBtn=actionBtns.add("button",undefined,langData[currentLang].ui.removeBtn);
+
+        function applyExpressionToLayer(layer,exprText){
+            if(chkPos.value)try{layer.property("Transform").property("Position").expression=exprText;}catch(e){}
+            if(chkRot.value)try{layer.property("Transform").property("Rotation").expression=exprText;}catch(e){}
+            if(chkScale.value)try{layer.property("Transform").property("Scale").expression=exprText;}catch(e){}
+            if(chkOpac.value)try{layer.property("Transform").property("Opacity").expression=exprText;}catch(e){}
+            if(chkAnchor.value)try{layer.property("Transform").property("Anchor Point").expression=exprText;}catch(e){}
+        }
+        function removeExpressionsFromLayer(layer){
+            if(chkPos.value)try{layer.property("Transform").property("Position").expression="";}catch(e){}
+            if(chkRot.value)try{layer.property("Transform").property("Rotation").expression="";}catch(e){}
+            if(chkScale.value)try{layer.property("Transform").property("Scale").expression="";}catch(e){}
+            if(chkOpac.value)try{layer.property("Transform").property("Opacity").expression="";}catch(e){}
+            if(chkAnchor.value)try{layer.property("Transform").property("Anchor Point").expression="";}catch(e){}
+        }
+
+        applyBtn.onClick=function(){
+            if(exprInput.text!==""){
+                app.beginUndoGroup("Apply Expression");
+                var comp=app.project.activeItem;
+                if(comp&&comp.selectedLayers.length>0){
+                    for(var i=0;i<comp.selectedLayers.length;i++){applyExpressionToLayer(comp.selectedLayers[i],exprInput.text);}
+                } app.endUndoGroup();
+            }
+        };
+        removeBtn.onClick=function(){
+            app.beginUndoGroup("Remove Expression");
+            var comp=app.project.activeItem;
+            if(comp&&comp.selectedLayers.length>0){
+                for(var i=0;i<comp.selectedLayers.length;i++){removeExpressionsFromLayer(comp.selectedLayers[i]);}
+            } app.endUndoGroup();
+        };
+
+        addSeparator(win);
+
+        var linkGroup=win.add("group"); linkGroup.orientation="row";
+        var btnGitHub=linkGroup.add("button",undefined,langData[currentLang].ui.github);
+        var btnYouTube=linkGroup.add("button",undefined,langData[currentLang].ui.youtube);
+        btnGitHub.onClick=function(){try{if(File.fs=="Windows")system.callSystem('cmd /c "start https://github.com/"');else system.callSystem('open "https://github.com/"');}catch(e){}};
+        btnYouTube.onClick=function(){try{if(File.fs=="Windows")system.callSystem('cmd /c "start https://youtube.com/"');else system.callSystem('open "https://youtube.com/"');}catch(e){}};
+
+        function updateLanguage(){
+            var sel=langDropdown.selection.index;
+            currentLang=["en","ru","uk","de","fr","zh","ko","ja"][sel];
+            var L=langData[currentLang].ui;
+            win.text=L.title; langLabel.text=L.lang;
+            lblInput.text=L.inputLabel; placeholder.text=L.inputPh;
+            lblList.text=L.listLabel; addPresetBtn.text=L.addBtn; delPresetBtn.text=L.delBtn;
+            lblProps.text=L.propsLabel;
+            chkPos.text=L.pos; chkRot.text=L.rot; chkScale.text=L.scale; chkOpac.text=L.opac; chkAnchor.text=L.anchor;
+            applyBtn.text=L.applyBtn; removeBtn.text=L.removeBtn;
+            btnGitHub.text=L.github; btnYouTube.text=L.youtube;
+            refreshList();
+        }
+        langDropdown.onChange=updateLanguage;
+
+        if(win instanceof Window){win.center();win.show();}else{win.layout.layout(true);}
+    }
+    ExpressionsPlus(this);
+}
