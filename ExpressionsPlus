@@ -295,7 +295,7 @@
         var linkGroup=win.add("group"); linkGroup.orientation="row";
         var btnGitHub=linkGroup.add("button",undefined,langData[currentLang].ui.github);
         var btnYouTube=linkGroup.add("button",undefined,langData[currentLang].ui.youtube);
-        btnGitHub.onClick=function(){try{if(File.fs=="Windows")system.callSystem('cmd /c "start https://github.com/"');else system.callSystem('open "https://github.com/"');}catch(e){}};
+        btnGitHub.onClick=function(){try{if(File.fs=="Windows")system.callSystem('cmd /c "start https://github.com/Derenel228/After-Effects-script-ExpressionsPlus/tree/5afc587c853778e0bddb051b37426410a7321f53"');else system.callSystem('open "https://github.com/"');}catch(e){}};
         btnYouTube.onClick=function(){try{if(File.fs=="Windows")system.callSystem('cmd /c "start https://youtube.com/"');else system.callSystem('open "https://youtube.com/"');}catch(e){}};
 
         function updateLanguage(){
