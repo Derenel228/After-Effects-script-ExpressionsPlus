@@ -1,0 +1,13 @@
+Installation
+
+Download Expression+.jsx.
+
+Copy the file to your After Effects Scripts/ScriptUI Panels folder:
+
+Windows: Documents\Adobe\After Effects <version>\Scripts\ScriptUI Panels\
+
+macOS: /Applications/Adobe After Effects <version>/Scripts/ScriptUI Panels/
+
+Restart After Effects.
+
+Open the panel via Window > Expressions+.
