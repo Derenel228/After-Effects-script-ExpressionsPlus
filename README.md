@@ -1,12 +1,12 @@
 # After-Effects-script-ExpressionsPlus
-Expressions+ script for Adobe After Effects simplifies working with expressions: it offers ready-made presets (shake, loop, rotation, etc.), lets you save custom ones, and quickly apply or remove them from selected layers. Supports multiple interface languages and GitHub/YouTube integration.
+Expressions+ for Adobe After Effects is a powerful tool that makes working with expressions fast and effortless. Apply ready-made presets (shake, loop, rotation, and more) to one or multiple layers at once, save and reuse your own custom expressions, and manage them with ease. The script speeds up your workflow by letting you add or remove expressions from selected layers in just a few clicks—no coding required. Multi-language interface support included.
 
 # Expressions+ for Adobe After Effects
 
 ## Overview
 **Expressions+** is a ScriptUI panel for Adobe After Effects that makes working with expressions easier.  
 It provides a set of ready-made presets (Shake, Loop, Rotation, etc.), lets you save custom expressions, and quickly apply or remove them from selected layers.  
-The UI supports multiple languages and includes quick links to GitHub and YouTube.
+The UI supports multiple languages.
 
 ---
 
